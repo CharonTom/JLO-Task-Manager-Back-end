@@ -3,8 +3,6 @@ import {
   GraphQLString,
   GraphQLID,
   GraphQLBoolean,
-  GraphQLSchema,
-  GraphQLList,
 } from "graphql";
 
 export const TaskType = new GraphQLObjectType({
@@ -17,12 +15,12 @@ export const TaskType = new GraphQLObjectType({
   }),
 });
 
-export const TaskGroupType = new GraphQLObjectType({
-  name: "TaskGroup",
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    colorCode: { type: GraphQLString },
-    tasks: { type: new GraphQLList(TaskType) },
-  }),
-});
+// export const TaskGroupType = new GraphQLObjectType({
+//   name: "TaskGroup",
+//   fields: () => ({
+//     id: { type: GraphQLID },
+//     name: { type: GraphQLString },
+//     colorCode: { type: GraphQLString },
+//     tasks: { type: new GraphQLList(TaskType) },
+//   }),
+// });
