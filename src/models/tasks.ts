@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 
 const taskSchema = new mongoose.Schema({
   description: {
@@ -13,6 +13,12 @@ const taskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
 });
 
 const Task = mongoose.model("Task", taskSchema);

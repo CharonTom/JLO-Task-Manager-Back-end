@@ -1,6 +1,7 @@
-import { GraphQLString, GraphQLBoolean, GraphQLID } from "graphql";
+import { GraphQLString, GraphQLBoolean, GraphQLID, GraphQLList } from "graphql";
 import { TaskType } from "../TypeDefs/types";
 import TaskModel from "../../models/tasks";
+import TagModel from "../../models/tags";
 
 //--------------- Create a new task ----------------------
 
@@ -9,16 +10,18 @@ export const CREATE_TASK = {
   args: {
     description: { type: GraphQLString },
     status: { type: GraphQLBoolean },
+    tags: { type: new GraphQLList(GraphQLID) },
   },
   async resolve(parent: any, args: any) {
     try {
-      const { description, status } = args;
+      const { description, status, tags } = args;
 
       // Using MongoDB's model
       const newTask = new TaskModel({
         description,
         createdAt: new Date(),
         status,
+        tags,
       });
 
       // Saving task in DB
@@ -59,10 +62,11 @@ export const UPDATE_TASK = {
     id: { type: GraphQLID },
     description: { type: GraphQLString },
     status: { type: GraphQLBoolean },
+    tags: { type: new GraphQLList(GraphQLID) },
   },
   async resolve(parent: any, args: any) {
     try {
-      const { description, status, id } = args;
+      const { description, status, id, tags } = args;
 
       const task = await TaskModel.findById(id);
 
@@ -75,6 +79,16 @@ export const UPDATE_TASK = {
       }
       if (status !== undefined) {
         task.status = status;
+      }
+      if (tags !== undefined) {
+        // Assurez-vous que les tags existent avant de les associer
+        const existingTags = await TagModel.find({ _id: { $in: tags } });
+
+        if (existingTags.length !== tags.length) {
+          throw new Error("Certains des tags spécifiés n'existent pas.");
+        }
+
+        task.tags = tags; // Associez les nouveaux tags à la tâche
       }
 
       const updatedTask = await task.save();

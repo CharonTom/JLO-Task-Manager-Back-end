@@ -1,6 +1,6 @@
 import { GraphQLID, GraphQLList } from "graphql";
 import { TaskType } from "../TypeDefs/types";
-import Task from "../../models/tasks"; // Importez votre modèle de tâche MongoDB
+import Task from "../../models/tasks";
 
 export const GET_ALL_TASKS = {
   type: new GraphQLList(TaskType),
