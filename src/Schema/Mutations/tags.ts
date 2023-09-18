@@ -14,13 +14,13 @@ export const CREATE_TAG = {
     try {
       const { name, colorCode } = args;
 
-      // Using MongoDB's model
+      // On utilise le modèle mongoDB
       const newTag = new TagModel({
         name,
         colorCode,
       });
 
-      // Saving Tag in DB
+      // On sauvegarde le tag dans la BDD
       const savedTag = await newTag.save();
 
       const successMessage = "The Tag has been created successfully";

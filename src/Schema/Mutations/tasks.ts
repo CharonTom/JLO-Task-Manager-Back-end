@@ -9,26 +9,21 @@ export const CREATE_TASK = {
   type: TaskType,
   args: {
     description: { type: GraphQLString },
-    status: { type: GraphQLBoolean },
     tags: { type: new GraphQLList(GraphQLID) },
   },
   async resolve(parent: any, args: any) {
     try {
-      const { description, status, tags } = args;
+      const { description, tags } = args;
 
-      // Using MongoDB's model
+      // On utilise le modèle mongoDB
       const newTask = new TaskModel({
         description,
-        createdAt: new Date(),
-        status,
         tags,
       });
 
-      // Saving task in DB
+      // On sauvegarde le tag dans la BDD
       const savedTask = await newTask.save();
-
-      const successMessage = "The task has been created successfully";
-      return { message: successMessage, task: savedTask };
+      return savedTask;
     } catch (error: any) {
       throw new Error(`Error creating task : ${error.message}`);
     }
@@ -82,19 +77,20 @@ export const UPDATE_TASK = {
       }
       if (tags !== undefined) {
         // Assurez-vous que les tags existent avant de les associer
+
         const existingTags = await TagModel.find({ _id: { $in: tags } });
 
         if (existingTags.length !== tags.length) {
           throw new Error("Certains des tags spécifiés n'existent pas.");
         }
 
-        task.tags = tags; // Associez les nouveaux tags à la tâche
+        task.tags = tags; // On associe les nouveaux tags à la tâche
       }
 
       const updatedTask = await task.save();
 
       const successMessage = "The task has been successfully updated !";
-      return { message: successMessage, task: updatedTask };
+      return updatedTask;
     } catch (error: any) {
       throw new Error(`Erreur updating task : ${error.message}`);
     }
