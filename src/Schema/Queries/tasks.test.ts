@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../index";
+import app from "../../app";
 
 // Je réalise ce test en partant du principe que la base de donnée n'est pas vide.
 

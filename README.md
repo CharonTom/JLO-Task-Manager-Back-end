@@ -1,15 +1,17 @@
 # Réaliser une API de gestion de tâche
 
-Cette API permet de gérer des tâches : création, modification, suppression et récupération des
-tâches.
+Cette API permet de créer et gérer des tâches (création, modification, suppression et récupération)
+
 Une tâche comporte les informations suivantes :
 
 - une description
 - une date de création
 - un statut : complété ou en cours
 - un identifiant unique
+
   Une tâche peut être associée à un ou plusieurs groupes de tâches aussi appelé “tag”.
   Un groupe de tâche comporte les informations suivantes :
+
 - un nom
 - un code couleur
 - un identifiant unique

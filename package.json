@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.ts",
-    "dev": "nodemon ./src/index.ts",
+    "start": "node ./dist/app.ts",
+    "dev": "nodemon ./src/app.ts",
     "test": "jest --watch"
   },
   "dependencies": {

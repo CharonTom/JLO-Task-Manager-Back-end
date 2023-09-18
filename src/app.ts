@@ -20,12 +20,12 @@ app.use(
 );
 
 app.listen(5000, () => {
-  //console.log(" Server running on port 5000");
+  console.log(" Server running on port 5000");
 });
 
 mongoose
   .connect(`${MONGO_SRV}`)
-  // .then(() => console.log("connected to MongoDB"))
+  .then(() => console.log("connected to MongoDB"))
   .catch((err) => console.log(err));
 
 export default app;
