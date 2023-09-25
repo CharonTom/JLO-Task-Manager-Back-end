@@ -19,9 +19,11 @@ app.use(
   })
 );
 
-app.listen(5000, () => {
-  console.log(" Server running on port 5000");
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(5000, () => {
+    console.log("Server running on port 5000");
+  });
+}
 
 mongoose
   .connect(`${MONGO_SRV}`)

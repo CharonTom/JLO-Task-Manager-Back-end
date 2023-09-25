@@ -53,7 +53,7 @@ export const DELETE_TASK = {
 
 export const DELETE_TRUE_TASKS = {
   type: GraphQLString,
-  // n'a pas besoin d'arguments
+  // Pas besoin d'arguments
   async resolve(parent: any, args: any) {
     try {
       const deleteTrueTasks = await TaskModel.deleteMany({ status: true });
