@@ -49,6 +49,26 @@ export const DELETE_TASK = {
   },
 };
 
+//----------------------- DELETE ALL TASKS WITH STATUS = TRUE -------------------------------------
+
+export const DELETE_TRUE_TASKS = {
+  type: GraphQLString,
+  // n'a pas besoin d'arguments
+  async resolve(parent: any, args: any) {
+    try {
+      const deleteTrueTasks = await TaskModel.deleteMany({ status: true });
+
+      if (deleteTrueTasks.deletedCount > 0) {
+        return `${deleteTrueTasks.deletedCount} successfull tasks were deleted.`;
+      } else {
+        return "Nothing to delete.";
+      }
+    } catch (error: any) {
+      throw new Error(`Error deleteing tasks : ${error.message}`);
+    }
+  },
+};
+
 //----------------------- Update ------------------------------
 
 export const UPDATE_TASK = {

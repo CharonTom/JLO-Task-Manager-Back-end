@@ -1,24 +1,50 @@
 import request from "supertest";
 import app from "../../app";
+import TaskModel from "../../models/tasks";
 
-// Je réalise ce test en partant du principe que la base de donnée n'est pas vide.
+describe("Récupération de toutes les tâches", () => {
+  beforeEach(async () => {
+    await TaskModel.deleteMany({});
+  });
 
-describe("Get all task", () => {
-  it("should get all tasks successfully", async () => {
+  it("shoud get all tasks successfully", async () => {
+    // Insérez des tâches fictives
+    await TaskModel.insertMany([
+      { description: "Tâche 1" },
+      { description: "Tâche 2" },
+    ]);
+
     const response = await request(app)
       .post("/graphql")
       .send({
-        query: ` query { getAllTasks {
-                  _id
-                   }
-                }`,
+        query: `{
+          getAllTasks {
+            _id
+          }
+        }`,
       });
 
-    // Vérifiez le statut de la réponse
     expect(response.status).toBe(200);
 
-    // Vérifiez dans la réponse que des tâches sont présente
     const tasks = response.body.data.getAllTasks;
+    expect(Array.isArray(tasks)).toBe(true);
     expect(tasks.length).toBeGreaterThan(0);
+  });
+
+  it("shoud get an empty array if no data in DB", async () => {
+    const response = await request(app)
+      .post("/graphql")
+      .send({
+        query: `{
+          getAllTasks {
+            _id
+          }
+        }`,
+      });
+
+    expect(response.status).toBe(200);
+    const tasks = response.body.data.getAllTasks;
+    expect(Array.isArray(tasks)).toBe(true);
+    expect(tasks.length).toBe(0);
   });
 });

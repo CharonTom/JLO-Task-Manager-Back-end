@@ -1,7 +1,12 @@
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
 import { GET_ALL_TASKS, GET_ONE_TASK } from "./Queries/tasks";
 import { GET_ALL_TAGS, GET_ONE_TAG } from "./Queries/tags";
-import { CREATE_TASK, DELETE_TASK, UPDATE_TASK } from "./Mutations/tasks";
+import {
+  CREATE_TASK,
+  DELETE_TASK,
+  UPDATE_TASK,
+  DELETE_TRUE_TASKS,
+} from "./Mutations/tasks";
 import { CREATE_TAG, DELETE_TAG, UPDATE_TAG } from "./Mutations/tags";
 
 const RootQuery = new GraphQLObjectType({
@@ -23,6 +28,7 @@ const Mutation = new GraphQLObjectType({
     createTag: CREATE_TAG,
     deleteTag: DELETE_TAG,
     updateTag: UPDATE_TAG,
+    deleteTrueTasks: DELETE_TRUE_TASKS,
   },
 });
 
