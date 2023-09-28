@@ -4,6 +4,7 @@ import TaskModel from "../../models/tasks";
 
 describe("Récupération de toutes les tâches", () => {
   beforeEach(async () => {
+    // Avant chaque test, supprimez toutes les tâches de la base de données
     await TaskModel.deleteMany({});
   });
 

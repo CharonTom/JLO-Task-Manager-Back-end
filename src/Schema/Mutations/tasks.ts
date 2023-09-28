@@ -64,7 +64,7 @@ export const DELETE_TRUE_TASKS = {
         return "Nothing to delete.";
       }
     } catch (error: any) {
-      throw new Error(`Error deleteing tasks : ${error.message}`);
+      throw new Error(`Error deleting tasks : ${error.message}`);
     }
   },
 };

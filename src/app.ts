@@ -1,10 +1,10 @@
-import * as dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { schema } from "./Schema";
 import cors from "cors";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const MONGO_SRV = process.env.MONGO_SRV;
 
