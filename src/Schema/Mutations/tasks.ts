@@ -95,8 +95,6 @@ export const UPDATE_TASK = {
         task.status = status;
       }
       if (tags !== undefined) {
-        // Assurez-vous que les tags existent avant de les associer
-
         const existingTags = await TagModel.find({ _id: { $in: tags } }); // $in avec MongoDB retournera tous les éléments où l'_id correspond à l'une des valeurs spécifiées dans les tags.
 
         if (existingTags.length !== tags.length) {
