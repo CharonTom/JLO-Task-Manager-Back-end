@@ -2,13 +2,12 @@ import request from "supertest";
 import app from "../../app";
 import TaskModel from "../../models/tasks";
 
-describe("Task API", () => {
+describe("CRUD testing", () => {
   it("should successfully create a task", async () => {
     const newTask = {
       description: "Testing create",
     };
 
-    // Envoie une requête pour créer une tâche
     const createResponse = await request(app)
       .post("/graphql")
       .send({
@@ -35,7 +34,6 @@ describe("Task API", () => {
     });
     const updatedDesc = "updated";
 
-    // Envoie une requête pour mettre à jour la tâche
     const updateResponse = await request(app)
       .post("/graphql")
       .send({
@@ -46,7 +44,7 @@ describe("Task API", () => {
             }
           }`,
       });
-    // Vérifiez le statut de la réponse
+
     expect(updateResponse.status).toBe(200);
 
     // Vérifiez si la tâche a été mise à jour avec succès en matchant avec la réponse

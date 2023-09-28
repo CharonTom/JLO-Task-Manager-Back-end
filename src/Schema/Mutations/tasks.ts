@@ -15,7 +15,6 @@ export const CREATE_TASK = {
     try {
       const { description, tags } = args;
 
-      // On utilise le modèle mongoDB
       const newTask = new TaskModel({
         description,
         tags,
@@ -59,7 +58,7 @@ export const DELETE_TRUE_TASKS = {
       const deleteTrueTasks = await TaskModel.deleteMany({ status: true });
 
       if (deleteTrueTasks.deletedCount > 0) {
-        return `${deleteTrueTasks.deletedCount} successfull tasks were deleted.`;
+        return `${deleteTrueTasks.deletedCount} finished tasks were successfully deleted.`;
       } else {
         return "Nothing to delete.";
       }
@@ -98,18 +97,17 @@ export const UPDATE_TASK = {
       if (tags !== undefined) {
         // Assurez-vous que les tags existent avant de les associer
 
-        const existingTags = await TagModel.find({ _id: { $in: tags } });
+        const existingTags = await TagModel.find({ _id: { $in: tags } }); // $in avec MongoDB retournera tous les éléments où l'_id correspond à l'une des valeurs spécifiées dans les tags.
 
         if (existingTags.length !== tags.length) {
-          throw new Error("Certains des tags spécifiés n'existent pas.");
+          throw new Error("Certains des tags spécifiés n'existent pas."); // s'assurer que les tags spécifiés correspondent à des tags existants dans la BDD
         }
 
-        task.tags = tags; // On associe les nouveaux tags à la tâche
+        task.tags = tags;
       }
 
       const updatedTask = await task.save();
 
-      const successMessage = "The task has been successfully updated !";
       return updatedTask;
     } catch (error: any) {
       throw new Error(`Erreur updating task : ${error.message}`);

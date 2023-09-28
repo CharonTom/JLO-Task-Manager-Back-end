@@ -2,14 +2,12 @@ import request from "supertest";
 import app from "../../app";
 import TaskModel from "../../models/tasks";
 
-describe("Récupération de toutes les tâches", () => {
+describe("Fetching data testing", () => {
   beforeEach(async () => {
-    // Avant chaque test, supprimez toutes les tâches de la base de données
     await TaskModel.deleteMany({});
   });
 
   it("shoud get all tasks successfully", async () => {
-    // Insérez des tâches fictives
     await TaskModel.insertMany([
       { description: "Tâche 1" },
       { description: "Tâche 2" },
@@ -28,6 +26,7 @@ describe("Récupération de toutes les tâches", () => {
     expect(response.status).toBe(200);
 
     const tasks = response.body.data.getAllTasks;
+
     expect(Array.isArray(tasks)).toBe(true);
     expect(tasks.length).toBeGreaterThan(0);
   });

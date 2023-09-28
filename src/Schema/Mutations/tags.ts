@@ -14,13 +14,11 @@ export const CREATE_TAG = {
     try {
       const { name, colorCode } = args;
 
-      // On utilise le modèle mongoDB
       const newTag = new TagModel({
         name,
         colorCode,
       });
 
-      // On sauvegarde le tag dans la BDD
       const savedTag = await newTag.save();
 
       const successMessage = "The Tag has been created successfully";
@@ -78,8 +76,7 @@ export const UPDATE_TAG = {
 
       const updatedTag = await Tag.save();
 
-      const successMessage = "The Tag has been successfully updated !";
-      return { message: successMessage, Tag: updatedTag };
+      return updatedTag;
     } catch (error: any) {
       throw new Error(`Erreur updating Tag : ${error.message}`);
     }
