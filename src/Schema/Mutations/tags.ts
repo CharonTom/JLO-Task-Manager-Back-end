@@ -20,9 +20,7 @@ export const CREATE_TAG = {
       });
 
       const savedTag = await newTag.save();
-
-      const successMessage = "The Tag has been created successfully";
-      return { message: successMessage, Tag: savedTag };
+      return savedTag;
     } catch (error: any) {
       throw new Error(`Error creating Tag : ${error.message}`);
     }
@@ -40,8 +38,7 @@ export const DELETE_TAG = {
     try {
       const deletedTag = await TagModel.findByIdAndDelete(args.id);
 
-      const successMessage = "The Tag has been successfully deleted";
-      return { message: successMessage, Tag: deletedTag };
+      return "The tag has been successfully deleted.";
     } catch (error: any) {
       throw new Error(`Error deleting Tag : ${error.message}`);
     }

@@ -20,7 +20,7 @@ export const CREATE_TASK = {
         tags,
       });
 
-      // On sauvegarde le tag dans la BDD
+      // On sauvegarde la tâche dans la BDD
       const savedTask = await newTask.save();
       return savedTask;
     } catch (error: any) {
@@ -38,10 +38,9 @@ export const DELETE_TASK = {
   },
   async resolve(parent: any, args: any) {
     try {
-      const deletedTask = await TaskModel.findByIdAndDelete(args.id);
+      await TaskModel.findByIdAndDelete(args.id);
 
-      const successMessage = "The task has been successfully deleted";
-      return { message: successMessage, task: deletedTask };
+      return "The task has been successfully deleted.";
     } catch (error: any) {
       throw new Error(`Error deleting task : ${error.message}`);
     }
@@ -55,13 +54,9 @@ export const DELETE_TRUE_TASKS = {
   // Pas besoin d'arguments
   async resolve(parent: any, args: any) {
     try {
-      const deleteTrueTasks = await TaskModel.deleteMany({ status: true });
+      await TaskModel.deleteMany({ status: true });
 
-      if (deleteTrueTasks.deletedCount > 0) {
-        return `${deleteTrueTasks.deletedCount} finished tasks were successfully deleted.`;
-      } else {
-        return "Nothing to delete.";
-      }
+      return "Finished tasks were successfully deleted.";
     } catch (error: any) {
       throw new Error(`Error deleting tasks : ${error.message}`);
     }
