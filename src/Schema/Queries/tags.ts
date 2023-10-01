@@ -3,7 +3,7 @@ import { TagType } from "../TypeDefs/types";
 import Tag from "../../models/tags";
 
 export const GET_ALL_TAGS = {
-  type: new GraphQLList(TagType),
+  type: new GraphQLList(TagType), // On attend une liste
 
   resolve() {
     return Tag.find();

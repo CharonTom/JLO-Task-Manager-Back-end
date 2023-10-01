@@ -20,7 +20,7 @@ export const TaskType = new GraphQLObjectType({
         try {
           const tagIds = parent.tags;
 
-          // Use Mongoose to get tags
+          // On récupère l'info des tags de la tâche via mongoDB
           const tags = await Tag.find({ _id: { $in: tagIds } });
 
           return tags;

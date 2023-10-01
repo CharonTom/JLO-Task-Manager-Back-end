@@ -23,10 +23,10 @@ if (process.env.NODE_ENV !== "test") {
   app.listen(5000, () => {
     console.log("Server running on port 5000");
   });
-}
+} // Permet de run les tests en série au lieu de parallèle.
 
 mongoose
-  .connect(`${MONGO_SRV}`) // Dû à un conflit entre dotenv et TS j'ai été obligé de placer ma variable d'environnement entre backtips
+  .connect(`${MONGO_SRV}`) // Conflit entre dotenv et TS j'ai été obligé de placer ma variable d'environnement entre backtips.
   .then(() => console.log("connected to MongoDB"))
   .catch((err) => console.log(err));
 

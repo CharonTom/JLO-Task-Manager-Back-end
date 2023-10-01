@@ -3,7 +3,7 @@ import { TaskType } from "../TypeDefs/types";
 import Task from "../../models/tasks";
 
 export const GET_ALL_TASKS = {
-  type: new GraphQLList(TaskType),
+  type: new GraphQLList(TaskType), // On attend une liste
 
   resolve() {
     return Task.find();

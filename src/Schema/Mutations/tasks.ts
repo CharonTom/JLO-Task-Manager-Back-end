@@ -87,7 +87,6 @@ export const UPDATE_TASK = {
       if (!task) {
         throw new Error("Task is not found");
       }
-
       if (description !== undefined) {
         task.description = description;
       }
@@ -95,10 +94,10 @@ export const UPDATE_TASK = {
         task.status = status;
       }
       if (tags !== undefined) {
-        const existingTags = await TagModel.find({ _id: { $in: tags } }); // $in avec MongoDB retournera tous les éléments où l'_id correspond à l'une des valeurs spécifiées dans les tags.
+        const existingTags = await TagModel.find({ _id: { $in: tags } }); // On vérifie que les ids ont correctement était saisie.
 
         if (existingTags.length !== tags.length) {
-          throw new Error("Certains des tags spécifiés n'existent pas."); // s'assurer que les tags spécifiés correspondent à des tags existants dans la BDD
+          throw new Error("Certains des tags spécifiés n'existent pas.");
         }
 
         task.tags = tags;
