@@ -16,15 +16,10 @@ Une tâche comporte les informations suivantes :
 - un code couleur
 - un identifiant unique
 
-### Critères d’acceptance par ordre de priorité :
+### Critères de l'application :
 
-1. Créer une tâche
-2. Récupérer la liste des tâches
-3. Mettre à jour le statut d’une tâche
-4. Modifier la description d’une tâche
-5. Supprimer une tâche
-6. Créer de nouveaux groupes de tâches
-7. Associer une tâche à un groupe de tâche (les groupes de tâches peuvent être statiques)
+1. Implémenter un système CRUD pour les tâches ( Create, Read, Update, Delete )
+2. Implémenter un système de groupe de tâche statique (tag) associer une tâche
 
 ### Technologies utilisées:
 
