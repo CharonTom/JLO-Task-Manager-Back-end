@@ -4,7 +4,7 @@
 <img src="https://github.com/CharonTom/my-website/blob/main/src/assets/img/task.png" alt="application sur pc et mobile" width="400"/>
 </p>
 
-Cette API permet de créer et gérer des tâches (création, modification, suppression et récupération)
+Cette API permet de créer et de gérer des tâches (création, modification, suppression et récupération).
 
 Une tâche comporte les informations suivantes :
 
@@ -13,7 +13,7 @@ Une tâche comporte les informations suivantes :
 - un statut : complété ou en cours
 - un identifiant unique
 
-  Une tâche peut être associée à un ou plusieurs groupes de tâches aussi appelé “tag”.
+  Une tâche peut être associée à un ou plusieurs groupes de tâches aussi appelés “tag”.
   Un groupe de tâche comporte les informations suivantes :
 
 - un nom
