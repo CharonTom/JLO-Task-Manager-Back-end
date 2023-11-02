@@ -1,6 +1,6 @@
 # Réaliser une API de gestion de tâche
 
-<img src="https://github.com/CharonTom/my-website/blob/main/src/assets/img/promptopia.png" alt="application sur pc et mobile" width="500"/>
+<img src="https://github.com/CharonTom/my-website/blob/main/src/assets/img/task.png" alt="application sur pc et mobile" width="400"/>
 
 Cette API permet de créer et gérer des tâches (création, modification, suppression et récupération)
 
