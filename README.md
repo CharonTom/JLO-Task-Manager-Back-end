@@ -1,6 +1,8 @@
 # Réaliser une API de gestion de tâche
 
+<p align="center">
 <img src="https://github.com/CharonTom/my-website/blob/main/src/assets/img/task.png" alt="application sur pc et mobile" width="400"/>
+</p>
 
 Cette API permet de créer et gérer des tâches (création, modification, suppression et récupération)
 
