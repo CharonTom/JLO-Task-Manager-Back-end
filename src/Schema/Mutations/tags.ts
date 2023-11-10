@@ -2,7 +2,7 @@ import { GraphQLString, GraphQLID } from "graphql";
 import { TagType } from "../TypeDefs/types";
 import TagModel from "../../models/tags";
 
-//--------------- Create a new Tag ----------------------
+//--------------- Create a new Tag ---------------------
 
 export const CREATE_TAG = {
   type: TagType,
